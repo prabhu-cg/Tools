@@ -11,48 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./Markly # This tells GitHub to go into your folder first
+        working-directory: ./marly # This tells GitHub to go into your folder first
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
-          cache-dependency-path: './
-name: Deploy Vite site from subdirectory
-on:
-  push:
-    branches: [main]
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./Markly # This tells GitHub to go into your folder first
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-          cache-dependency-path: './Markly/package-lock.json'
+          cache-dependency-path: './marly/package-lock.json'
       - run: npm install
       - run: npm run build
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
         with:
-          # This points to the dist folder INSIDE your Markly folder
-          path: './Markly/dist' 
-      - uses: actions/deploy-pages@v4/package-lock.json'
-      - run: npm install
-      - run: npm run build
-      - uses: actions/configure-pages@v4
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          # This points to the dist folder INSIDE your Markly folder
-          path: './Markly/dist' 
+          # This points to the dist folder INSIDE your marly folder
+          path: './marly/dist' 
       - uses: actions/deploy-pages@v4
